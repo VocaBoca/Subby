@@ -1,4 +1,17 @@
 services:
+  web:
+    build:
+      context: ../backend
+    container_name: subby_web
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
   db:
     image: postgres:16
     container_name: subby_db
